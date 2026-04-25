@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Goda Landing Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1a56db;
+            margin-right: 48px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            margin-top: 6px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 16px;
+            padding-bottom: 12px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a.active {
+            color: #1a56db;
+            border-bottom: 2px solid #1a56db;
+        }
+
+        .nav-links a:hover {
+            color: #1a56db;
+        }
+
+        .nav-right {
+            gap: 28px;
+        }
+
+        .sign-in {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .sign-in:hover {
+            color: #1a56db;
+        }
+
+        .btn-create {
+            text-decoration: none;
+            background-color: #0b5edd;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-create:hover {
+            background-color: #094eb8;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 32px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./img/image.png');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: #ffffff;
+            padding: 8px;
+            border-radius: 12px;
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-wrapper svg {
+            position: absolute;
+            left: 14px;
+            color: #64748b;
+        }
+
+        .search-bar input {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            padding: 14px 14px 14px 40px;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #334155;
+            background-color: #f8fafc;
+            outline: none;
+        }
+
+        .search-bar input:focus {
+            border-color: #0b5edd;
+            background-color: #ffffff;
+        }
+
+        .search-bar input::placeholder {
+            color: #64748b;
+        }
+
+        .btn-search {
+            background-color: #0b5edd;
+            color: #ffffff;
+            border: none;
+            padding: 0 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: #094eb8;
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 60px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background-color: #f1f5f9;
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+        }
+
+        .feature-icon.blue {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .feature-icon.red {
+            background-color: #ffe4e6;
+            color: #be123c;
+        }
+
+        .feature-icon.orange {
+            background-color: #ffedd5;
+            color: #9a3412;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Trending Destinations */
+        .destinations {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+        }
+
+        .section-header-left h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .section-header-left p {
+            font-size: 15px;
+            color: #64748b;
+        }
+
+        .view-all {
+            color: #0b5edd;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .dest-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .dest-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .dest-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .dest-card:hover .dest-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .badge-top {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background-color: #ffffff;
+            color: #1e293b;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .dest-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .dest-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .dest-card p span {
+            color: #0b5edd;
+            font-weight: 700;
+        }
+
+        /* Summer Sales Banner */
+        .promo {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .promo-card {
+            background-color: #be123c;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative background element */
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: 250px;
+            width: 400px;
+            height: 400px;
+            background-color: #9f1239;
+            transform: rotate(45deg);
+            border-radius: 40px;
+            z-index: 1;
+        }
+
+        .promo-content {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            max-width: 500px;
+        }
+
+        .promo-content h2 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .promo-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            color: #ffe4e6;
+        }
+
+        .promo-btns {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-white {
+            background-color: #ffffff;
+            color: #be123c;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-white:hover {
+            background-color: #ffe4e6;
+        }
+
+        .btn-outline-white {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-outline-white:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .promo-image {
+            position: relative;
+            z-index: 2;
+            width: 380px;
+            height: 300px;
+            transform: rotate(4deg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: #e2e8f0;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 20px;
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+        }
+
+        .newsletter-icon {
+            color: #0b5edd;
+            margin-bottom: 16px;
+        }
+
+        .newsletter h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .newsletter p {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto 16px auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: #0b5edd;
+        }
+
+        .newsletter-form button {
+            background-color: #0b5edd;
+            color: #ffffff;
+            border: none;
+            padding: 0 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #094eb8;
+        }
+
+        .newsletter-disclaimer {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-left {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .logo {
+                margin-right: 0;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .btn-search {
+                padding: 14px;
+                justify-content: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .dest-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .promo-card {
+                flex-direction: column;
+                padding: 40px 20px;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .promo-btns {
+                justify-content: center;
+            }
+
+            .promo-image {
+                width: 100%;
+                max-width: 380px;
+                transform: rotate(0);
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                padding: 14px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .dest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 60px 32px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .brand-desc {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .copyright {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 32px;
+            height: 32px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #64748b;
+            transition: background 0.2s;
+        }
+
+        .social-link:hover {
+            background: #cbd5e1;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .footer-column a {
+            display: block;
+            text-decoration: none;
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: #1a56db;
+        }
+
+        /* Mobile Responsive for Footer */
+        @media (max-width: 900px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">T-Goda</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Hotels</a></li>
+                <li><a href="#">Flights</a></li>
+                <li><a href="#">Bundles</a></li>
+                <li><a href="#">Activities</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="sign-in">Sign In</a>
+            <a href="#" class="btn-create">Create Account</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Escape to Your Perfect<br>Paradise</h1>
+        <p>Unlock exclusive prices on over 2 million properties and flights across the globe.</p>
+
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" placeholder="Where to next?">
+            </div>
+            <div class="search-input-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <input type="text" placeholder="Oct 12 - Oct 18">
+            </div>
+            <button class="btn-search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Search
+            </button>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+            </div>
+            <h3>Best Price Guarantee</h3>
+            <p>Find a lower price? We'll match it and give you a voucher for your next trip.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon red">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <h3>24/7 Global Support</h3>
+            <p>Our world-class support team is here to help you anywhere, anytime in 40+ languages.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon orange">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            </div>
+            <h3>Flexible Booking</h3>
+            <p>Life happens. Most of our properties offer free cancellation for peace of mind.</p>
+        </div>
+    </section>
+
+    <!-- Trending Destinations -->
+    <section class="destinations">
+        <div class="section-header">
+            <div class="section-header-left">
+                <h2>Trending Destinations</h2>
+                <p>Handpicked favorites for your next adventure</p>
+            </div>
+            <a href="#" class="view-all">View all</a>
+        </div>
+        <div class="dest-grid">
+            <a href="#" class="dest-card">
+                <div class="dest-img-wrapper">
+                    <img src="./img/image1.webp" alt="Bangkok">
+                    <span class="badge-top">TOP RATED</span>
+                </div>
+                <h3>Bangkok, Thailand</h3>
+                <p>Starting from <span>$120</span></p>
+            </a>
+            <a href="#" class="dest-card">
+                <div class="dest-img-wrapper">
+                    <img src="./img/image2.webp" alt="Tokyo">
+                    <span class="badge-top">TOP RATED</span>
+                </div>
+                <h3>Tokyo, Japan</h3>
+                <p>Starting from <span>$250</span></p>
+            </a>
+            <a href="#" class="dest-card">
+                <div class="dest-img-wrapper">
+                    <img src="./img/image3.webp" alt="Paris">
+                    <span class="badge-top">TOP RATED</span>
+                </div>
+                <h3>Paris, France</h3>
+                <p>Starting from <span>$180</span></p>
+            </a>
+            <a href="#" class="dest-card">
+                <div class="dest-img-wrapper">
+                    <img src="./img/image4.webp" alt="London">
+                    <span class="badge-top">TOP RATED</span>
+                </div>
+                <h3>London, UK</h3>
+                <p>Starting from <span>$210</span></p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Summer Sales -->
+    <section class="promo">
+        <div class="promo-card">
+            <div class="promo-content">
+                <h2>Summer Sales: Up to 40% Off!</h2>
+                <p>Exclusive member deals on flights and luxury hotels for your next summer getaway. Valid until Oct
+                    31st.</p>
+                <div class="promo-btns">
+                    <button class="btn-white">Explore Deals</button>
+                    <button class="btn-outline-white">Join Club T-Goda</button>
+                </div>
+            </div>
+            <div class="promo-image">
+                <img src="./img/image5.webp" alt="Luxury pool">
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <svg class="newsletter-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <h2>Get Travel Deals Directly</h2>
+        <p>Subscribe to our newsletter and get early access to hidden gems and seasonal discounts. No spam, only
+            adventure.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Your email address">
+            <button>Subscribe Now</button>
+        </div>
+        <p class="newsletter-disclaimer">By subscribing, you agree to our Terms of Service and Privacy Policy.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo" style="color: black; margin-right: 0;">T–Goda</div>
+                <p class="brand-desc">
+                    Making world travel accessible, affordable, and delightful for everyone since 2024. Your journey
+                    starts here.
+                </p>
+                <p class="copyright">© 2024 T–Goda Booking. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="#6b7280">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="#6b7280" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="#6b7280">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#">Support</a>
+                    <a href="#">Mobile App</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

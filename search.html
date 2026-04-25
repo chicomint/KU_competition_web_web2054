@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation Bar</title>
+<style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a56db;
+  margin-right: 48px;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  margin-top: 6px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 16px;
+  padding-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a.active {
+  color: #1a56db;
+  border-bottom: 2px solid #1a56db;
+}
+
+.nav-links a:hover { color: #1a56db; }
+
+.nav-right { gap: 28px; }
+
+.sign-in {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.sign-in:hover { color: #1a56db; }
+
+.btn-create {
+  text-decoration: none;
+  background-color: #0b5edd;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-create:hover { background-color: #094eb8; }
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  background-color: #f0f2f8;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  height: 60px;
+}
+
+.destination { flex: 2; }
+.dates { flex: 1.2; }
+.travelers { flex: 1; }
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #1a56db;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.field-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.label {
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 2px;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  padding: 0;
+}
+
+.btn-update {
+  background-color: #0b5edd;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 60px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-update:hover { background-color: #094eb8; }
+
+.content-wrapper {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+  background-color: #f8fafc;
+}
+
+.sidebar {
+  width: 260px;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #1e293b;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.filter-section h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 20px 0 12px 0;
+}
+
+.price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.range-slider-track {
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  position: relative;
+}
+
+.range-slider-fill {
+  width: 100%;
+  height: 100%;
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.stars {
+  color: #fbbf24;
+  letter-spacing: 1px;
+}
+
+.map-container {
+  margin-top: 30px;
+  height: 120px;
+  background-color: #a5d8ff;
+  background-image: radial-gradient(#74c0fc 2px, transparent 2px);
+  background-size: 20px 20px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-map {
+  background: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.results { flex: 1; }
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.results-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.sort {
+  font-size: 14px;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.flash-deals-container {
+  border: 4px solid #1a56db;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background: white;
+}
+
+.deal-banner {
+  background-color: #fff1f2;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #be123c;
+  font-weight: 600;
+}
+
+.deal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.time-box {
+  background: #be123c;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hotel-card {
+  display: flex;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.flash-hotel-card {
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 0;
+}
+
+.flash-hotel-card:last-child {
+  border-bottom: none;
+}
+
+.flash-hotel-card .hotel-img {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.flash-hotel-card .hotel-img img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.flash-hotel-card .hotel-info {
+  padding: 24px 30px;
+  align-items: center;
+}
+
+.flash-hotel-card h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.flash-hotel-card .loc {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.flash-hotel-card .price-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.flash-hotel-card .price-section .new-p {
+  font-size: 20px;
+}
+
+.flash-hotel-card .info-side {
+  width: 150px;
+}
+
+.hotel-img {
+  width: 300px;
+  position: relative;
+}
+
+.hotel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #be123c;
+  color: white;
+  padding: 6px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.badge-choice {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hotel-info {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+}
+
+.info-main { flex: 1; }
+
+.loc {
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.tag {
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag svg { flex-shrink: 0; }
+
+.urgency {
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.free-cancel {
+  color: #15803d;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.deal-text {
+  color: #1e40af;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.info-side {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.rating {
+  background: #eff6ff;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+.rating.blue { background: #f0fdf4; }
+
+.rating-val {
+  font-weight: 700;
+  font-size: 14px;
+  color: #1e40af;
+}
+
+.blue .rating-val { color: #15803d; }
+
+.rating-count { font-size: 11px; color: #60a5fa; }
+.blue .rating-count { color: #86efac; }
+
+.price-section .new-p {
+  font-size: 28px;
+  color: #be123c;
+  font-weight: 800;
+}
+
+.price-section .new-p span {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.old-p {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.btn-book {
+  background: #be123c;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-claim-deal {
+  background: #be123c;
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.page, .arrow {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.page.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.footer {
+  background-color: #f8fafc;
+  padding: 60px 32px;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 50px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.footer-brand {
+  flex: 1;
+  max-width: 400px;
+}
+
+.brand-desc {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.copyright {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  width: 32px;
+  height: 32px;
+  background: #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #64748b;
+  transition: background 0.2s;
+}
+
+.social-link:hover { background: #cbd5e1; }
+
+.footer-links { display: flex; gap: 80px; }
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+
+.footer-column a {
+  display: block;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 15px;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.footer-column a:hover { color: #1a56db; }
+
+  /* Mobile Responsive */
+  @media (max-width: 900px) {
+    .content-wrapper {
+      flex-direction: column;
+      padding: 20px;
+    }
+    .sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .search-bar-container {
+      flex-direction: column;
+      padding: 20px;
+      height: auto;
+    }
+    .search-field {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .btn-update {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .navbar {
+      flex-direction: column;
+      padding: 16px;
+      gap: 16px;
+    }
+    .nav-left {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .logo {
+      margin-right: 0;
+    }
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hotel-card {
+      flex-direction: column;
+    }
+    .flash-hotel-card .hotel-img {
+      width: 100%;
+    }
+    .hotel-img {
+      width: 100%;
+      height: 200px;
+    }
+    .flash-hotel-card .info-side, .info-side {
+      width: 100%;
+      text-align: left;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .price-section {
+      align-items: flex-start !important;
+    }
+    .btn-book, .btn-claim-deal {
+      width: 100%;
+    }
+    .footer-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .footer-links {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .deal-banner {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo">T-Goda</div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Hotels</a></li>
+        <li><a href="#">Flights</a></li>
+        <li><a href="#">Bundles</a></li>
+        <li><a href="#">Activities</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="sign-in">Sign In</a>
+      <a href="#" class="btn-create">Create Account</a>
+    </div>
+  </nav>
+
+  <br>
+
+  <div class="search-bar-container">
+    <div class="search-field destination">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+      </svg>
+      <div class="field-info">
+        <span class="label">Destination</span>
+        <input type="text" class="value" value="Bali, Indonesia">
+      </div>
+    </div>
+    <div class="search-field dates">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+      </svg>
+      <div class="field-info">
+        <span class="label">Dates</span>
+        <input type="text" class="value" value="Oct 12 – Oct 19, 2024">
+      </div>
+    </div>
+    <div class="search-field travelers">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+      </svg>
+      <div class="field-info">
+        <span class="label">Travelers</span>
+        <input type="text" class="value" value="2 Adults, 1 Room">
+      </div>
+    </div>
+    <button class="btn-update">Update Search</button>
+  </div>
+
+  <div class="content-wrapper">
+    <aside class="sidebar">
+      <div class="filter-header">
+        <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a56db"
+          stroke-width="2">
+          <path d="M3 6h18M7 12h10M10 18h4" />
+        </svg>
+        <span>Filters</span>
+      </div>
+      <div class="filter-section">
+        <h4>Price Range</h4>
+        <div class="price-labels"><span>$0</span><span>$1000+</span></div>
+        <div class="range-slider-track">
+          <div class="range-slider-fill"></div>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Property Type</h4>
+        <label class="checkbox-container"><input type="checkbox"> Hotels</label>
+        <label class="checkbox-container"><input type="checkbox"> Resorts</label>
+        <label class="checkbox-container"><input type="checkbox"> Apartments</label>
+        <label class="checkbox-container"><input type="checkbox"> Villas</label>
+      </div>
+      <div class="filter-section">
+        <h4>Star Rating</h4>
+        <label class="checkbox-container"><input type="checkbox"> <span class="stars">★★★★★</span></label>
+        <label class="checkbox-container"><input type="checkbox"> <span class="stars">★★★★☆</span></label>
+      </div>
+      <div class="filter-section">
+        <h4>Facilities</h4>
+        <label class="checkbox-container"><input type="checkbox"> Free Wi-Fi</label>
+        <label class="checkbox-container"><input type="checkbox"> Swimming Pool</label>
+        <label class="checkbox-container"><input type="checkbox"> Fitness Center</label>
+        <label class="checkbox-container"><input type="checkbox"> Spa</label>
+        <label class="checkbox-container"><input type="checkbox"> Parking</label>
+        <label class="checkbox-container"><input type="checkbox"> Pet Friendly</label>
+      </div>
+      <div class="filter-section">
+        <h4>Review Score</h4>
+        <label class="checkbox-container"><input type="checkbox"> Superb 9+</label>
+        <label class="checkbox-container"><input type="checkbox"> Very Good 8+</label>
+        <label class="checkbox-container"><input type="checkbox"> Good 7+</label>
+      </div>
+      <div class="filter-section">
+        <h4>Neighborhood</h4>
+        <label class="checkbox-container"><input type="checkbox"> Patong</label>
+        <label class="checkbox-container"><input type="checkbox"> Karon</label>
+        <label class="checkbox-container"><input type="checkbox"> Kata</label>
+        <label class="checkbox-container"><input type="checkbox"> Kamala</label>
+      </div>
+      <div class="filter-section">
+        <h4>Bed Type</h4>
+        <label class="checkbox-container"><input type="checkbox"> Single</label>
+        <label class="checkbox-container"><input type="checkbox"> Double</label>
+        <label class="checkbox-container"><input type="checkbox"> King</label>
+      </div>
+      <div class="map-container">
+        <div class="map-overlay">
+          <button class="btn-map">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16" />
+            </svg>
+            View on Map
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="results">
+      <div class="results-header">
+        <h3>245 properties in Bali</h3>
+        <div class="sort">Sort by: <strong>Recommended</strong>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" style="vertical-align:middle;margin-left:3px">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="flash-deals-container">
+        <div class="deal-banner">
+          <div class="deal-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c0 6-6 8-6 14a6 6 0 0012 0c0-6-6-8-6-14z" />
+              <path d="M12 12c0 2-1.5 3.5-1.5 5" />
+            </svg>
+            Flash Deals for You
+          </div>
+          <div class="timer">Ends in: <span class="time-box">08 : 45 : 12</span></div>
+        </div>
+
+        <div class="hotel-card flash-hotel-card">
+          <div class="hotel-img">
+            <img src="search_img/image1.webp" alt="Mandala Sky Luxury Villas">
+            <span class="badge">60% OFF</span>
+          </div>
+          <div class="hotel-info">
+            <div class="info-main">
+              <h2>Mandala Sky Luxury Villas <span class="stars">★★★★★</span></h2>
+              <p class="loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Uluwatu, Bali &bull; Cliff-top view
+              </p>
+            </div>
+            <div class="info-side">
+              <div class="price-section">
+                <div class="old-p">$1,200</div>
+                <div class="new-p">$480 <span>/night</span></div>
+                <button class="btn-claim-deal">Claim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hotel-card flash-hotel-card">
+          <div class="hotel-img">
+            <img src="search_img/image2.webp" alt="Emerald Jungle Retreat">
+            <span class="badge">45% OFF</span>
+          </div>
+          <div class="hotel-info">
+            <div class="info-main">
+              <h2>Emerald Jungle Retreat <span class="stars">★★★★☆</span></h2>
+              <p class="loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Ubud, Bali &bull; Private Sanctuary
+              </p>
+            </div>
+            <div class="info-side">
+              <div class="price-section">
+                <div class="old-p">$450</div>
+                <div class="new-p">$247 <span>/night</span></div>
+                <button class="btn-claim-deal">Claim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hotel-card flash-hotel-card">
+          <div class="hotel-img">
+            <img src="search_img/image3.webp" alt="Seminyak Shores Club">
+            <span class="badge">35% OFF</span>
+          </div>
+          <div class="hotel-info">
+            <div class="info-main">
+              <h2>Seminyak Shores Club <span class="stars">★★★★★</span></h2>
+              <p class="loc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Seminyak, Bali &bull; Beachfront Bliss
+              </p>
+            </div>
+            <div class="info-side">
+              <div class="price-section">
+                <div class="old-p">$680</div>
+                <div class="new-p">$442 <span>/night</span></div>
+                <button class="btn-claim-deal">Claim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-img">
+          <img src="search_img/image4.webp" alt="The Azure Serenity Resort">
+          <span class="badge-choice">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Top Choice
+          </span>
+        </div>
+        <div class="hotel-info">
+          <div class="info-main">
+            <h2>The Azure Serenity Resort <span class="stars">★★★★★</span></h2>
+            <p class="loc">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Ubud, Bali · 2.5 km from center
+            </p>
+            <div class="tags">
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12.55a11 11 0 0114.08 0" />
+                  <path d="M1.42 9a16 16 0 0121.16 0" />
+                  <path d="M8.53 16.11a6 6 0 016.95 0" />
+                  <line x1="12" y1="20" x2="12.01" y2="20" />
+                </svg>
+                Free Wi-Fi
+              </span>
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 20c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0" />
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M7 11l2.5-3 5 3 2.5-3" />
+                </svg>
+                Pool
+              </span>
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 8h1a4 4 0 010 8h-1" />
+                  <path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z" />
+                </svg>
+                Breakfast
+              </span>
+            </div>
+            <p class="urgency">Only 2 rooms left at this price!</p>
+          </div>
+          <div class="info-side">
+            <div class="rating">
+              <div class="rating-val">8.9 Excellent</div>
+              <div class="rating-count">1,240 reviews</div>
+            </div>
+            <div class="price-section">
+              <span class="old-p">$320</span>
+              <div class="new-p">$284 <span>/night</span></div>
+              <button class="btn-book">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-img">
+          <img src="search_img/image5.webp" alt="Lumina Beach Villas">
+        </div>
+        <div class="hotel-info">
+          <div class="info-main">
+            <h2>Lumina Beach Villas <span class="stars">★★★★☆</span></h2>
+            <p class="loc">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Seminyak, Bali · Beachfront
+            </p>
+            <div class="tags">
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 12a11.05 11.05 0 00-22 0zm-5 7a3 3 0 01-6 0v-7" />
+                </svg>
+                Private Beach
+              </span>
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />
+                </svg>
+                Spa
+              </span>
+            </div>
+            <p class="free-cancel">Free cancellation before Oct 10</p>
+          </div>
+          <div class="info-side">
+            <div class="rating blue">
+              <div class="rating-val">9.2 Exceptional</div>
+              <div class="rating-count">856 reviews</div>
+            </div>
+            <div class="price-section">
+              <div class="new-p">$415 <span>/night</span></div>
+              <button class="btn-book">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-img">
+          <img src="search_img/image6.webp" alt="The Palms Sanctuary">
+        </div>
+        <div class="hotel-info">
+          <div class="info-main">
+            <h2>The Palms Sanctuary <span class="stars">★★★★☆</span></h2>
+            <p class="loc">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Nusa Dua, Bali · 0.8 km from beach
+            </p>
+            <div class="tags">
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13" />
+                  <path d="M16 8h4l3 3v5h-7V8z" />
+                  <circle cx="5.5" cy="18.5" r="2.5" />
+                  <circle cx="18.5" cy="18.5" r="2.5" />
+                </svg>
+                Airport Shuttle
+              </span>
+              <span class="tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 5v14M18 5v14" />
+                  <path d="M2 9h4M18 9h4M2 15h4M18 15h4" />
+                  <path d="M6 12h12" />
+                </svg>
+                Gym
+              </span>
+            </div>
+            <p class="deal-text">Breakfast + Dinner deal available</p>
+          </div>
+          <div class="info-side">
+            <div class="rating blue">
+              <div class="rating-val">8.4 Great</div>
+              <div class="rating-count">2,102 reviews</div>
+            </div>
+            <div class="price-section">
+              <div class="new-p">$189 <span>/night</span></div>
+              <button class="btn-book">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="arrow">&#8249;</button>
+        <button class="page active">1</button>
+        <button class="page">2</button>
+        <button class="page">3</button>
+        <span>...</span>
+        <button class="page">12</button>
+        <button class="arrow">&#8250;</button>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo" style="color: black;">T–Goda</div>
+        <p class="brand-desc">
+          Making world travel accessible, affordable, and delightful for everyone since 2024. Your journey starts here.
+        </p>
+        <p class="copyright">© 2024 T–Goda Booking. All rights reserved.</p>
+        <div class="social-icons">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#6b7280">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="#6b7280" stroke="none" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#6b7280">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-column">
+          <h4>Support</h4>
+          <a href="#">Support</a>
+          <a href="#">Mobile App</a>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Navigation to Room Detail Page
+      const hotelCards = document.querySelectorAll('.hotel-card');
+      const bookButtons = document.querySelectorAll('.btn-book, .btn-claim-deal');
+      
+      hotelCards.forEach(card => {
+        card.addEventListener('click', () => {
+          window.location.href = 'room.html';
+        });
+        card.style.cursor = 'pointer';
+      });
+
+      bookButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          window.location.href = 'room.html';
+        });
+      });
+
+      // 2. Filter functionality
+      const starSection = Array.from(document.querySelectorAll('.filter-section')).find(s => s.querySelector('h4').textContent.includes('Star Rating'));
+      const starCheckboxes = starSection ? starSection.querySelectorAll('input[type="checkbox"]') : [];
+      
+      const rangeSliderTrack = document.querySelector('.range-slider-track');
+      const rangeSliderFill = document.querySelector('.range-slider-fill');
+      const maxPriceLabel = document.querySelector('.price-labels span:last-child');
+      let maxPriceFilter = Infinity;
+
+      if (rangeSliderTrack && rangeSliderFill) {
+        rangeSliderTrack.addEventListener('click', function(e) {
+          const rect = rangeSliderTrack.getBoundingClientRect();
+          const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          rangeSliderFill.style.width = (percent * 100) + '%';
+          
+          maxPriceFilter = Math.round(percent * 1000);
+          if (maxPriceLabel) {
+            maxPriceLabel.textContent = '$' + maxPriceFilter;
+          }
+          
+          filterCards();
+        });
+        rangeSliderTrack.style.cursor = 'pointer';
+      }
+
+      function filterCards() {
+        let activeStars = [];
+        starCheckboxes.forEach(cb => {
+          if (cb.checked) {
+             const starSpan = cb.parentElement.querySelector('.stars');
+             if (starSpan) {
+                const starCount = (starSpan.textContent.match(/★/g) || []).length;
+                if (starCount > 0) activeStars.push(starCount);
+             }
+          }
+        });
+
+        hotelCards.forEach(card => {
+          let show = true;
+          
+          // Check stars
+          if (activeStars.length > 0) {
+            const starsElem = card.querySelector('.stars');
+            if (starsElem) {
+              const stars = (starsElem.textContent.match(/★/g) || []).length;
+              if (!activeStars.includes(stars)) show = false;
+            } else {
+              show = false;
+            }
+          }
+          
+          // Check price
+          if (maxPriceFilter < Infinity) {
+            const priceElem = card.querySelector('.new-p');
+            if (priceElem) {
+               const priceText = priceElem.textContent.replace('$', '').split(' ')[0];
+               const price = parseInt(priceText);
+               if (!isNaN(price) && price > maxPriceFilter) {
+                  show = false;
+               }
+            }
+          }
+
+          card.style.display = show ? 'flex' : 'none';
+        });
+      }
+
+      starCheckboxes.forEach(cb => cb.addEventListener('change', filterCards));
+    });
+  </script>
+</body>
+
+</html>

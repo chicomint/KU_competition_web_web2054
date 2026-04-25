@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Azure Resort & Spa</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1a56db;
+      margin-right: 48px;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      margin-top: 6px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 500;
+      font-size: 16px;
+      padding-bottom: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a.active {
+      color: #1a56db;
+      border-bottom: 2px solid #1a56db;
+    }
+
+    .nav-links a:hover {
+      color: #1a56db;
+    }
+
+    .nav-right {
+      gap: 28px;
+    }
+
+    .sign-in {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s ease;
+    }
+
+    .sign-in:hover {
+      color: #1a56db;
+    }
+
+    .btn-create {
+      text-decoration: none;
+      background-color: #0b5edd;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-create:hover {
+      background-color: #094eb8;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .breadcrumbs {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumbs a {
+      color: #64748b;
+      text-decoration: none;
+    }
+
+    .breadcrumbs a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumbs span.current {
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    .hotel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .hotel-title-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stars-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stars {
+      display: flex;
+      align-items: center;
+    }
+
+    .badge-reort {
+      background-color: #0057b8;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hotel-title-section h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .location-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      color: #475569;
+    }
+
+    .show-map {
+      color: #0057b8;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 8px;
+    }
+
+    .show-map:hover {
+      text-decoration: underline;
+    }
+
+    .hotel-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e293b;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-book-now {
+      background: #be185d;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-book-now:hover {
+      background: #9d174d;
+    }
+
+    /* Gallery Section */
+    .gallery-container {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      height: 400px;
+    }
+
+    .gallery-main {
+      flex: 1;
+      border-radius: 12px 0 0 12px;
+      overflow: hidden;
+      min-height: 0;
+      min-width: 0;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-grid img:nth-child(2) {
+      border-radius: 0 12px 0 0;
+    }
+
+    .gallery-more {
+      position: relative;
+      border-radius: 0 0 12px 0;
+      overflow: hidden;
+    }
+
+    .gallery-more img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .more-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Overview Section */
+    .overview-section {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .overview-left {
+      flex: 2;
+    }
+
+    .overview-left h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 16px;
+    }
+
+    .overview-desc {
+      color: #475569;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .amenities-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1e293b;
+      margin-bottom: 16px;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #334155;
+      font-size: 15px;
+    }
+
+    .see-all-amenities {
+      color: #0057b8;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .see-all-amenities:hover {
+      text-decoration: underline;
+    }
+
+    .overview-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .review-score-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .score-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .score-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .review-count {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .score-box {
+      background: #0057b8;
+      color: white;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .progress-item {
+      margin-bottom: 12px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #0057b8;
+      border-radius: 3px;
+    }
+
+    .map-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      height: 160px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .map-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .map-overlay-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px;
+    }
+
+    .map-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .map-desc {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* Rooms Section */
+    .rooms-section {
+      margin-bottom: 60px;
+    }
+
+    .rooms-heading {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 16px;
+    }
+
+    .rooms-container {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+
+    .rooms-thead {
+      display: flex;
+      background-color: #f8fafc;
+      padding: 16px 24px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .th-room {
+      flex: 2;
+    }
+
+    .th-sleeps {
+      flex: 0.8;
+    }
+
+    .th-price {
+      flex: 1.2;
+    }
+
+    .th-options {
+      flex: 2;
+    }
+
+    .room-row {
+      display: flex;
+      padding: 24px;
+      border-bottom: 1px solid #e2e8f0;
+      position: relative;
+    }
+
+    .room-row:last-child {
+      border-bottom: none;
+    }
+
+    .room-highlight {
+      border-left: 4px solid #0057b8;
+      padding-left: 20px;
+    }
+
+    .td-room {
+      flex: 2;
+      padding-right: 20px;
+    }
+
+    .td-sleeps {
+      flex: 0.8;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .td-price {
+      flex: 1.2;
+    }
+
+    .td-options {
+      flex: 1.5;
+    }
+
+    .td-action {
+      flex: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .room-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .room-title h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1e293b;
+    }
+
+    .badge-lto {
+      background-color: #be185d;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .room-desc {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 12px;
+    }
+
+    .room-details {
+      font-size: 14px;
+      color: #0057b8;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .room-details:hover {
+      text-decoration: underline;
+    }
+
+    .old-price {
+      font-size: 14px;
+      color: #64748b;
+      text-decoration: line-through;
+    }
+
+    .new-price {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .new-price.red {
+      color: #be185d;
+    }
+
+    .price-inc {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .option-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #10b981;
+      margin-bottom: 8px;
+    }
+
+    .option-warn {
+      font-size: 14px;
+      font-weight: 600;
+      color: #dc2626;
+      margin-top: 8px;
+    }
+
+    .btn-select {
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btn-select.red {
+      background-color: #be185d;
+    }
+
+    .btn-select.red:hover {
+      background-color: #9d174d;
+    }
+
+    .btn-select.blue {
+      background-color: #0057b8;
+    }
+
+    .btn-select.blue:hover {
+      background-color: #004494;
+    }
+
+    /* Guest Reviews Section */
+    .reviews-section {
+      margin-bottom: 60px;
+    }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .reviews-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .read-all {
+      color: #0057b8;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .read-all:hover {
+      text-decoration: underline;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .review-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .review-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .review-top .stars {
+      color: #fbbf24;
+      letter-spacing: 2px;
+    }
+
+    .review-top .date {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .review-text {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .reviewer-info .name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #1e293b;
+    }
+
+    .reviewer-info .country {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* Footer Section */
+    .footer {
+      background-color: #f8fafc;
+      padding: 60px 32px;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .brand-desc {
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 20px 0;
+    }
+
+    .copyright {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-link {
+      width: 32px;
+      height: 32px;
+      background: #e2e8f0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #64748b;
+      transition: background 0.2s;
+    }
+
+    .social-link:hover {
+      background: #cbd5e1;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 80px;
+    }
+
+    .footer-column h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 20px;
+    }
+
+    .footer-column a {
+      display: block;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 15px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-column a:hover {
+      color: #1a56db;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 16px;
+      }
+      .nav-left {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .logo {
+        margin-right: 0;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hotel-header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .hotel-actions {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .btn-book-now {
+        width: 100%;
+      }
+      
+      .gallery-container {
+        flex-direction: column;
+        height: auto;
+      }
+      .gallery-main {
+        height: 300px;
+        border-radius: 12px 12px 0 0;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-grid img:nth-child(2) {
+        border-radius: 0;
+      }
+      .gallery-grid img:nth-child(3) {
+        border-radius: 0 0 0 12px;
+      }
+      .gallery-more {
+        border-radius: 0 0 12px 0;
+      }
+      
+      .overview-section {
+        flex-direction: column;
+      }
+      .amenities-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .rooms-thead {
+        display: none;
+      }
+      .room-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .td-room, .td-sleeps, .td-price, .td-options, .td-action {
+        width: 100%;
+        padding: 0;
+      }
+      .td-action {
+        justify-content: flex-start;
+      }
+      
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo">T-Goda</div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Hotels</a></li>
+        <li><a href="#">Flights</a></li>
+        <li><a href="#">Bundles</a></li>
+        <li><a href="#">Activities</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="sign-in">Sign In</a>
+      <a href="#" class="btn-create">Create Account</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="#">Home</a> &rsaquo;
+      <a href="#">Greece</a> &rsaquo;
+      <a href="#">Crete Hotels</a> &rsaquo;
+      <span class="current">Grand Azure Resort & Spa</span>
+    </div>
+
+    <!-- Header Section -->
+    <div class="hotel-header">
+      <div class="hotel-title-section">
+        <div class="stars-badge">
+          <span class="stars">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24" stroke="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </span>
+          <span class="badge-reort">REORT</span>
+        </div>
+        <h1>Grand Azure Resort & Spa, Elounda</h1>
+        <div class="location-line">
+          <svg class="loc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0057b8" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span class="address">Elounda Bay, Crete, 72053, Greece</span>
+          <a href="#" class="show-map">Show on map</a>
+        </div>
+      </div>
+      <div class="hotel-actions">
+        <button class="btn-action">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          Share
+        </button>
+        <button class="btn-action">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+          </svg>
+          Save
+        </button>
+        <button class="btn-book-now">Book Now</button>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery-container">
+      <div class="gallery-main">
+        <img src="room_img/image1.webp" alt="Main View">
+      </div>
+      <div class="gallery-grid">
+        <img src="room_img/image2.webp" alt="View 2">
+        <img src="room_img/image3.webp" alt="View 3">
+        <img src="room_img/image4.webp" alt="View 4">
+        <div class="gallery-more">
+          <img src="room_img/image5.webp" alt="View 5">
+          <div class="more-overlay">+124 photos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="overview-section">
+      <div class="overview-left">
+        <h2>Overview</h2>
+        <p class="overview-desc">Experience unparalleled luxury at the Grand Azure Resort & Spa, nestled on the pristine
+          shores of Elounda Bay. This architectural masterpiece blends traditional Cretan charm with ultra-modern
+          design, offering guests breathtaking panoramic views of the Mediterranean. Whether you're seeking a romantic
+          getaway or a rejuvenation retreat, our world-class amenities and personalized service ensure a stay that
+          transcends the ordinary.</p>
+
+        <h3 class="amenities-title">Popular Amenities</h3>
+        <div class="amenities-grid">
+          <div class="amenity"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057b8"
+              stroke-width="2">
+              <path d="M2 20c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0" />
+              <circle cx="12" cy="5" r="2" />
+              <path d="M7 11l2.5-3 5 3 2.5-3" />
+            </svg> 3 Outdoor Pools</div>
+          <div class="amenity"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057b8"
+              stroke-width="2">
+              <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />
+            </svg> Full-service Spa</div>
+          <div class="amenity"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057b8"
+              stroke-width="2">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+              <path d="M7 2v20" />
+              <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+            </svg> 5 Restaurants</div>
+          <div class="amenity"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057b8"
+              stroke-width="2">
+              <path d="M6.5 6.5h11" />
+              <path d="M6.5 17.5h11" />
+              <path d="M4 4v16" />
+              <path d="M20 4v16" />
+              <path d="M9 9l6 6" />
+              <path d="M15 9l-6 6" />
+            </svg> Gym & Fitness</div>
+          <div class="amenity"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057b8"
+              stroke-width="2">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+              <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+              <line x1="12" y1="20" x2="12.01" y2="20" />
+            </svg> Free High-speed Wi-Fi</div>
+          <div class="amenity"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0057b8"
+              stroke-width="2">
+              <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7" />
+            </svg> Private Beach</div>
+        </div>
+        <a href="#" class="see-all-amenities">See all 45 amenities <svg width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg></a>
+      </div>
+
+      <div class="overview-right">
+        <div class="review-score-card">
+          <div class="score-header">
+            <div>
+              <div class="score-text">Excellent</div>
+              <div class="review-count">1,248 verified reviews</div>
+            </div>
+            <div class="score-box">9.2</div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Cleanliness</span> <span>9.5</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Service</span> <span>9.2</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 92%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Location</span> <span>8.9</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 89%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <img src="room_img/image6.webp" alt="Map">
+          <div class="map-overlay-content">
+            <div class="map-title">Near Spinalonga Island</div>
+            <div class="map-desc">15 min walk to city center</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Select Your Room Section -->
+    <div class="rooms-section">
+      <h2 class="rooms-heading">Select Your Room</h2>
+
+      <div class="rooms-container">
+        <div class="rooms-thead">
+          <div class="th-room">Room Type</div>
+          <div class="th-sleeps">Sleeps</div>
+          <div class="th-price">Today's Price</div>
+          <div class="th-options">Options</div>
+        </div>
+
+        <!-- Room 1 -->
+        <div class="room-row room-highlight">
+          <div class="td-room">
+            <div class="room-title">
+              <h4>Presidential Sea Front Suite</h4>
+              <span class="badge-lto">LIMITED TIME OFFER</span>
+            </div>
+            <p class="room-desc">85m² &bull; Panoramic Sea View &bull; Infinity Pool Access</p>
+            <a href="#" class="room-details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Room details
+            </a>
+          </div>
+          <div class="td-sleeps">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="td-price">
+            <div class="old-price">$1,295</div>
+            <div class="new-price red">$862</div>
+            <div class="price-inc">Includes taxes & fees</div>
+          </div>
+          <div class="td-options">
+            <div class="option-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Free Airport Transfer</div>
+            <div class="option-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> All-Inclusive Premium</div>
+            <div class="option-warn">Only 1 room left!</div>
+          </div>
+          <div class="td-action">
+            <button class="btn-select red">Select</button>
+          </div>
+        </div>
+
+        <!-- Room 2 -->
+        <div class="room-row">
+          <div class="td-room">
+            <div class="room-title">
+              <h4>Deluxe Garden View Room</h4>
+            </div>
+            <p class="room-desc">32m² &bull; Balcony &bull; Garden View &bull; 1 King Bed</p>
+            <a href="#" class="room-details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Room details
+            </a>
+          </div>
+          <div class="td-sleeps">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="td-price">
+            <div class="old-price">$345</div>
+            <div class="new-price">$264</div>
+            <div class="price-inc">Includes taxes & fees</div>
+          </div>
+          <div class="td-options">
+            <div class="option-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Free Cancellation</div>
+            <div class="option-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Breakfast Included</div>
+          </div>
+          <div class="td-action">
+            <button class="btn-select blue">Select</button>
+          </div>
+        </div>
+
+        <!-- Room 3 -->
+        <div class="room-row">
+          <div class="td-room">
+            <div class="room-title">
+              <h4>Junior Suite with Private Pool</h4>
+            </div>
+            <p class="room-desc">45m² &bull; Private Pool &bull; Sea View &bull; King Bed</p>
+            <a href="#" class="room-details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Room details
+            </a>
+          </div>
+          <div class="td-sleeps">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12h.01"></path>
+              <path d="M15 12h.01"></path>
+              <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path>
+              <path
+                d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1">
+              </path>
+            </svg>
+          </div>
+          <div class="td-price">
+            <div class="old-price">$626</div>
+            <div class="new-price">$445</div>
+            <div class="price-inc">Includes taxes & fees</div>
+          </div>
+          <div class="td-options">
+            <div class="option-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Free Cancellation</div>
+            <div class="option-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> All-Inclusive</div>
+            <div class="option-warn">Only 2 rooms left!</div>
+          </div>
+          <div class="td-action">
+            <button class="btn-select blue">Select</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Guest Reviews Section -->
+    <div class="reviews-section">
+      <div class="reviews-header">
+        <h2>Guest Reviews</h2>
+        <a href="#" class="read-all">Read all 1,248 reviews</a>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-top">
+            <div class="stars">★★★★★</div>
+            <div class="date">May 12, 2024</div>
+          </div>
+          <p class="review-text">"An absolute paradise. The views from the Presidential Suite are unmatched. The service
+            was impeccable from start to finish."</p>
+          <div class="reviewer">
+            <div class="avatar" style="background-color: #dbeafe; color: #1e3a8a;">SM</div>
+            <div class="reviewer-info">
+              <div class="name">Sophia Martinez</div>
+              <div class="country">United Kingdom</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-top">
+            <div class="stars">★★★★☆</div>
+            <div class="date">Apr 28, 2024</div>
+          </div>
+          <p class="review-text">"Excellent facilities and great breakfast selection. The private beach is beautiful,
+            though the city center is a bit of a walk."</p>
+          <div class="reviewer">
+            <div class="avatar" style="background-color: #fce7f3; color: #831843;">JW</div>
+            <div class="reviewer-info">
+              <div class="name">James Wilson</div>
+              <div class="country">United States</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-top">
+            <div class="stars">★★★★★</div>
+            <div class="date">Apr 15, 2024</div>
+          </div>
+          <p class="review-text">"The spa treatments were heavenly. Truly a five-star experience. We will definitely be
+            coming back next summer."</p>
+          <div class="reviewer">
+            <div class="avatar" style="background-color: #ffedd5; color: #7c2d12;">AK</div>
+            <div class="reviewer-info">
+              <div class="name">Anna Kowalski</div>
+              <div class="country">Germany</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo" style="color: black;">T–Goda</div>
+        <p class="brand-desc">
+          Making world travel accessible, affordable, and delightful for everyone since 2024. Your journey starts here.
+        </p>
+        <p class="copyright">© 2024 T–Goda Booking. All rights reserved.</p>
+        <div class="social-icons">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#6b7280">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="#6b7280" stroke="none" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#6b7280">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-column">
+          <h4>Support</h4>
+          <a href="#">Support</a>
+          <a href="#">Mobile App</a>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Image Gallery Interactive Logic
+      const mainImage = document.querySelector('.gallery-main img');
+      const galleryThumbnails = document.querySelectorAll('.gallery-grid img, .gallery-more img');
+      
+      if (mainImage && galleryThumbnails.length > 0) {
+        galleryThumbnails.forEach(thumb => {
+          thumb.addEventListener('click', () => {
+            const tempSrc = mainImage.src;
+            mainImage.src = thumb.src;
+            thumb.src = tempSrc;
+          });
+          thumb.style.cursor = 'pointer';
+        });
+      }
+
+      const moreOverlay = document.querySelector('.more-overlay');
+      if (moreOverlay) {
+        moreOverlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+          alert('Opening full image gallery view...');
+        });
+      }
+
+      // 2. Buttons interaction mock
+      const bookBtns = document.querySelectorAll('.btn-book-now, .btn-select');
+      bookBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          alert('Proceeding to checkout for the selected room!');
+        });
+      });
+
+      const seeAllAmenities = document.querySelector('.see-all-amenities');
+      if (seeAllAmenities) {
+        seeAllAmenities.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('Displaying all 42 amenities in a modal...');
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
